@@ -24,7 +24,7 @@
 
 <body>
     <div class="container m-5">
-        <div id="welcome-row" class="row align-items-center">
+        <div id="welcome-row" class="row align-items-center" hidden>
             <div class="col-sm-6 bg-image">
 
             </div>
@@ -36,7 +36,37 @@
             </div>
         </div>
         <div id="voting-row" class="row">
-
+            <div class="col"></div>
+            <div class="col">
+                <form id="voting-form">
+                    <fieldset>
+                        <legend>Legend</legend>
+                        <div class="form-group">
+                            <label for="inputEmail">Email address</label>
+                            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                                placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="dogSelect">Who is the best dog?</label>
+                            <select class="form-control" id="dogSelect">
+                                <option></option>
+                                <option>Dómi</option>
+                                <option>Dómi</option>
+                                <option>Dómi</option>
+                                <option>Dómi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="explainWhy">Explain Why</label>
+                            <textarea class="form-control" id="explainWhy" rows="3"></textarea>
+                        </div>
+                        <button id="submit-vote" type="submit" class="btn btn-primary">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col"></div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
