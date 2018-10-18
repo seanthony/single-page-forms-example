@@ -1,5 +1,6 @@
 // hiding welcome row and showing form
 function hideWelcomeShowForm() {
+    // this hides the initial row when the button is clicked and displays the next
     var welcomeDiv = document.querySelector('#welcome-row');
     welcomeDiv.hidden = true;
     var formDiv = document.querySelector('#voting-row');
@@ -7,6 +8,10 @@ function hideWelcomeShowForm() {
 }
 
 function addListenerToWelcome() {
+    // adding the event listener to the welcome button
+    // this done in lieu of using an onclick method hard coded into the html
+    // since y'all often use templates I wanted to show how to use js to add a listener
+    // because using onclick with templates can be tricky
     var button = document.querySelector('#welcome-button');
     button.addEventListener('click', hideWelcomeShowForm);
 }
@@ -31,17 +36,23 @@ function validEmail(email) {
 }
 
 function validateVotingForm(form) {
+    // this function validates all the form items for me
+    // if there are any invalid items, the function that calls this won't let the form submit
     var formErrors = [];
     var formCorrect = [];
-    var name = form.inputName.value.trim();
+
+    // checking first form field
+    var name = form.inputName.value.trim(); // i trim these fields to make sure empty spaces aren't used instead
     if (name.length === 0) {
         formErrors.push({ selector: 'inputName', text: 'Please enter a name.', class: 'is-invalid', smallClass: 'invalid-feedback' });
     } else if (name.length <= 3) {
+        // this one still passes, just passes a note to the user
         formCorrect.push({ selector: 'inputName', text: 'Seems like a short name.', class: 'is-valid', smallClass: 'text-muted' })
     } else {
         formCorrect.push({ selector: 'inputName', text: 'Thank you', class: 'is-valid', smallClass: 'text-success' })
     }
 
+    // second form field, email
     var email = form.inputEmail.value.trim();
     if (email.length === 0) {
         formErrors.push({ selector: 'inputEmail', text: 'Please enter a valid email.', class: 'is-invalid', smallClass: 'invalid-feedback' });
@@ -55,13 +66,16 @@ function validateVotingForm(form) {
         formCorrect.push({ selector: 'inputEmail', text: "We promise we won't share your email.", class: 'is-valid', smallClass: 'valid-feedback' })
     }
 
+    // the select menu for the best dog
     var dog = form.dogSelect.value;
     if (dog.length === 0) {
+        // checking for the non select option
         formErrors.push({ selector: 'dogSelect', text: 'Please choose the best dog in the whole world.', class: 'is-invalid', smallClass: 'invalid-feedback' });
     } else {
         formCorrect.push({ selector: 'dogSelect', text: 'Thanks for voting!', class: 'is-valid', smallClass: 'valid-feedback' })
     }
 
+    // checking the additional text
     var text = form.explainWhy.value.trim();
     if (text.length === 0) {
         formErrors.push({ selector: 'explainWhy', text: 'Please explain why the dog you selected above is the best dog in the world.', class: 'is-invalid', smallClass: 'invalid-feedback' });
@@ -71,13 +85,15 @@ function validateVotingForm(form) {
         formCorrect.push({ selector: 'explainWhy', text: " ", class: 'is-valid', smallClass: 'valid-feedback' });
     }
 
+    // i return all the parts in a bundled object to make it easier to handle for the next function
     return { formErrors: formErrors, formCorrect: formCorrect, obj: { name: name, email: email, dog: dog, text: text } };
 }
 
 function submitForm(event) {
     event.preventDefault(); // added so the page doesn't refresh on form submit
-    var form = event.target;
+    var form = event.target; // getting the form associated with the submit
     var inputs = document.querySelectorAll('.form-control');
+    // the next two for loops clear out any residual feedback from the form validation
     for (var input of inputs) {
         let cls = ['is-valid', 'is-invalid'];
         input.classList.remove(...cls);
@@ -87,28 +103,38 @@ function submitForm(event) {
         let cls = ['valid-feedback', 'invalid-feedback'];
         smallText.classList.remove(...cls);
     }
+
+    // call the validation function
     var formNotes = validateVotingForm(form);
+
+    // checking to see if there are any errors
     if (formNotes.formErrors.length === 0) {
+        // no errors will go to the finishing function
         showFinal(formNotes.obj);
     } else {
-        console.log(formNotes.formErrors);
+        // i decided to combine the two arrays so the user could get feedback
+        // on incorrect and correct fields from the same for loop
         var feedback = formNotes.formErrors.concat(formNotes.formCorrect);
         for (var obj of feedback) {
+            // i set up the naming conventions in HTML to make this easier
+            // to not require multiple loops
             var element = document.querySelector('#' + obj.selector);
-            element.classList.add(obj.class)
+            element.classList.add(obj.class) // puts the color around the form input
             var small = document.querySelector('small.' + obj.selector);
-            small.innerHTML = obj.text;
+            small.innerHTML = obj.text; // updates the help text for the form
             small.classList.add(obj.smallClass);
         }
     }
 }
 
 function addFormListener() {
+    // queues up the form submit button to trigger the right events
     var form = document.querySelector('#voting-form');
     form.addEventListener('submit', submitForm);
 }
 
 // update final text
+// the last thing! aka the success screen
 function showFinal(obj) {
     for (var key in obj) {
         var val = obj[key];
@@ -123,9 +149,13 @@ function showFinal(obj) {
 }
 
 // add listeners
+// i decided to bundle these so they all would run in succession on page loading (below)
+// this would be like your `def main()` in python
 function addListeners() {
     addListenerToWelcome();
     addFormListener();
 }
 
+// when the window loads, add the event listeners
+// this would be similar to `if __main__ == __name__' in python
 window.addEventListener('load', addListeners);
