@@ -42,15 +42,21 @@
                     <fieldset>
                         <legend>Legend</legend>
                         <div class="form-group">
-                            <label for="inputEmail">Email address</label>
-                            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                            <label class="form-control-label" for="inputName">Name</label>
+                            <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Enter name">
+                            <small class="inputName form-text"></small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="inputEmail">Email address</label>
+                            <input type="email" class="form-control" id="inputEmail" name="inputEmail" aria-describedby="emailHelp"
                                 placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            <small class="inputEmail form-text text-muted">We'll never share your email with anyone
                                 else.</small>
                         </div>
                         <div class="form-group">
-                            <label for="dogSelect">Who is the best dog?</label>
-                            <select class="form-control" id="dogSelect">
+                            <label class="form-control-label" for="dogSelect">Who is the best dog?</label>
+                            <small class="dogSelect form-text"></small>
+                            <select class="form-control" id="dogSelect" name="dogSelect">
                                 <option></option>
                                 <option>Dómi</option>
                                 <option>Dómi</option>
@@ -59,8 +65,9 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="explainWhy">Explain Why</label>
-                            <textarea class="form-control" id="explainWhy" rows="3"></textarea>
+                            <label class="form-control-label" for="explainWhy">Explain Why</label>
+                            <textarea class="form-control" id="explainWhy" name="explainWhy" rows="3"></textarea>
+                            <small class="explainWhy form-text"></small>
                         </div>
                         <button id="submit-vote" type="submit" class="btn btn-primary">Submit</button>
                     </fieldset>
