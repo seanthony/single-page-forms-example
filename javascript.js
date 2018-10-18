@@ -33,6 +33,13 @@ function validateVotingForm(form) {
         formCorrect.push({ selector: 'inputEmail', text: '', class: 'is-valid', smallClass: 'text-success' })
     }
 
+    var dog = form.dogSelect.value;
+    if (dog.length === 0) {
+        formErrors.push({ selector: 'dogSelect', text: 'Please choose the best dog in the whole world.', class: 'is-invalid', smallClass: 'invalid-feedback' });
+    } else {
+        formCorrect.push({ selector: 'dogSelect', text: 'Thanks for voting!', class: 'is-valid', smallClass: 'text-success' })
+    }
+
     return { formErrors, formCorrect };
 }
 
