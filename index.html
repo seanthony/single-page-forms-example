@@ -48,14 +48,14 @@
                         </div>
                         <div class="form-group">
                             <label class="form-control-label" for="inputEmail">Email address</label>
-                            <input type="email" class="form-control" id="inputEmail" name="inputEmail" aria-describedby="emailHelp"
+                            <input type="text" class="form-control" id="inputEmail" name="inputEmail" aria-describedby="emailHelp"
                                 placeholder="Enter email">
-                            <small class="inputEmail form-text text-muted">We'll never share your email with anyone
+                            <small class="inputEmail form-text text-muted">We'll never share your email
+                                with anyone
                                 else.</small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label" for="dogSelect">Who is the best dog?</label>
-                            <small class="dogSelect form-text"></small>
                             <select class="form-control" id="dogSelect" name="dogSelect">
                                 <option></option>
                                 <option>Dómi</option>
@@ -63,6 +63,7 @@
                                 <option>Dómi</option>
                                 <option>Dómi</option>
                             </select>
+                            <small class="dogSelect form-text"></small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label" for="explainWhy">Explain Why</label>
@@ -74,6 +75,10 @@
                 </form>
             </div>
             <div class="col"></div>
+        </div>
+        <div class="row" id="final">
+            <h2><span id="name"></span> (<span id="email"></span>) voted for <strong><span id="dog"></span></strong>
+                because <em><span id="text"></span></em></h2>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
