@@ -148,12 +148,27 @@ function showFinal(obj) {
     rowToShow.hidden = false;
 }
 
+// set up the autofill button
+function autoFill() {
+    console.warn('auto filling form...');
+    document.querySelector("#inputName").value = 'Your Name';
+    document.querySelector("#inputEmail").value = 'yourname@basecampcodingacademy.org';
+    document.querySelector("#explainWhy").value = 'Because she is the best dog ever, duh.';
+    document.querySelector("#dogSelect").value = 'Dómi';
+}
+
+function addAutoFillListener() {
+    var button = document.querySelector('#auto-fill-button');
+    button.addEventListener('click', autoFill)
+}
+
 // add listeners
 // i decided to bundle these so they all would run in succession on page loading (below)
 // this would be like your `def main()` in python
 function addListeners() {
     addListenerToWelcome();
     addFormListener();
+    addAutoFillListener();
 }
 
 // when the window loads, add the event listeners
